@@ -1,4 +1,4 @@
-# LexAlly AI Architecture Quiz
+# ELNAR Innotech AI Architecture Quiz
 ### by Nabeela Khan
 
 An interactive Streamlit quiz to test knowledge of AI Agent patterns and RAG techniques.

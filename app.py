@@ -1,7 +1,7 @@
 import streamlit as st
 
 st.set_page_config(
-    page_title="AI Architecture Quiz · LexAlly",
+    page_title="AI Architecture Quiz · ELNAR Innotech",
     layout="centered",
     initial_sidebar_state="collapsed"
 )
@@ -348,7 +348,7 @@ QUESTIONS = [
     {
         "category": "Agent Pattern",
         "cat_class": "tag-orange",
-        "scenario": "Every contract uploaded to LexAlly goes through the same process: extract parties → identify contract type → check for 5 standard clauses → generate summary report. This runs hundreds of times a day.",
+        "scenario": "Every contract uploaded to ELNAR Innotech goes through the same process: extract parties → identify contract type → check for 5 standard clauses → generate summary report. This runs hundreds of times a day.",
         "options": [
             "Autonomous agent",
             "Chaining workflow",
@@ -374,7 +374,7 @@ QUESTIONS = [
     {
         "category": "Agent Pattern",
         "cat_class": "tag-orange",
-        "scenario": "LexAlly receives a contract. You don't know in advance whether it's a rental agreement, employment contract, or NDA — each needs a completely different review template and toolset.",
+        "scenario": "ELNAR Innotech receives a contract. You don't know in advance whether it's a rental agreement, employment contract, or NDA — each needs a completely different review template and toolset.",
         "options": [
             "Evaluator-optimizer",
             "Routing workflow",
@@ -426,7 +426,7 @@ QUESTIONS = [
     {
         "category": "Agent Pattern",
         "cat_class": "tag-orange",
-        "scenario": "LexAlly auto-generates contract drafts but quality is inconsistent — sometimes clauses are missing or language is too vague. You want the system to check its own output and keep improving until it meets a quality bar.",
+        "scenario": "ELNAR Innotech auto-generates contract drafts but quality is inconsistent — sometimes clauses are missing or language is too vague. You want the system to check its own output and keep improving until it meets a quality bar.",
         "options": [
             "Single agent with a longer prompt",
             "Routing workflow",
@@ -502,7 +502,7 @@ init_state()
 st.markdown("""
 <div class="header-wrap">
   <div class="brand">
-    <span class="brand-name">LexAlly</span>
+    <span class="brand-name">ELNAR Innotech</span>
   </div>
   <span class="author-tag">by Nabeela Khan</span>
 </div>
@@ -657,7 +657,7 @@ elif st.session_state.finished:
     """, unsafe_allow_html=True)
 
     # Share text
-    share_text = f"I just scored {score}/10 on Nabeela Khan's AI Architecture Quiz! 🧠 Do you know when to use Vector Search vs BM25 vs Contextual Retrieval — or when an Autonomous Agent beats a Workflow? Test yourself! #AI #LLM #Claude #LexAlly"
+    share_text = f"I just scored {score}/10 on Nabeela Khan's AI Architecture Quiz! 🧠 Do you know when to use Vector Search vs BM25 vs Contextual Retrieval — or when an Autonomous Agent beats a Workflow? Test yourself! #AI #LLM #Claude #ELNAR Innotech"
 
     st.markdown(f"""
     <div class="share-box">
@@ -696,7 +696,7 @@ elif st.session_state.finished:
 st.markdown("""
 <hr class="divider">
 <div style="text-align:center;font-size:12px;color:#8a8880;font-weight:300;padding-bottom:1rem;">
-  Made with care by <strong style="color:#2a5f4f;">Nabeela Khan</strong> · LexAlly ·
+  Made with care by <strong style="color:#2a5f4f;">Nabeela Khan</strong> · ELNAR Innotech ·
   Inspired by the <em>Building with Claude API</em> course
 </div>
 """, unsafe_allow_html=True)
