@@ -309,7 +309,7 @@ QUESTIONS = [
     {
         "category": "RAG Technique",
         "cat_class": "tag-green",
-        "scenario": "Your app has a 500-page legal document. A user asks: 'What are the termination clauses?' You need to find the relevant sections quickly without hitting token limits.",
+        "scenario": "Your app has a 500-page manual for a complex coffee machine. A user asks: 'How do I descale the milk frother?' You need to find the specific instructions quickly without sending the whole manual to the AI.",
         "options": [
             "Single agent with the full document in the prompt",
             "Vector search (semantic RAG)",
@@ -317,12 +317,12 @@ QUESTIONS = [
             "Chaining workflow"
         ],
         "correct": 1,
-        "explanation": "Classic RAG use case. The document is too large for a single prompt. Vector search converts chunks to embeddings and finds semantically similar sections — perfect for 'termination clauses' even if the document uses different wording like 'contract end' or 'dissolution'."
+        "explanation": "Classic RAG use case. The manual is too large for a single prompt. Vector search finds the most relevant 'chunks' of text about descaling and sends only those to the AI to generate an answer."
     },
     {
         "category": "Agent Pattern",
         "cat_class": "tag-orange",
-        "scenario": "A user types: 'Draft a lease agreement for a 2-bedroom apartment in Mumbai, check if it's compliant with Maharashtra rent laws, then flag any missing clauses.' You don't know in advance exactly which steps Claude will need to take.",
+        "scenario": "A user says: 'Plan a 3-day trip to Tokyo for me. I love sushi, want to see tech museums, and need to stay under a $500 budget.' The AI needs to search for flights, hotels, and attractions dynamically based on what it finds at each step.",
         "options": [
             "Chaining workflow — fixed 3 steps",
             "Single agent with system prompt",
@@ -330,12 +330,12 @@ QUESTIONS = [
             "Parallelization workflow"
         ],
         "correct": 2,
-        "explanation": "The path is genuinely unknown — Claude might need to search law databases, generate draft text, cross-reference clauses, and iterate. An autonomous agent with tools can dynamically decide the steps. A fixed chaining workflow would break on edge cases."
+        "explanation": "The path is unpredictable. The AI might find a cheap hotel but expensive flights, requiring it to go back and change the hotel choice. An autonomous agent with tools can 'reason' and 'act' dynamically until the goal is met."
     },
     {
         "category": "RAG Technique",
         "cat_class": "tag-green",
-        "scenario": "Users search your legal database using exact terms like 'IPC Section 302' or 'CrPC 161'. Your vector search keeps returning wrong results because it focuses on meaning, not exact terms.",
+        "scenario": "Users search your tech support database using exact error codes like 'ERR-992' or 'PX-404'. Your current AI search keeps returning general 'how-to' guides instead of the specific error fix because it looks for 'meaning' rather than 'exact match'.",
         "options": [
             "Contextual retrieval",
             "Reranking",
@@ -343,12 +343,12 @@ QUESTIONS = [
             "Autonomous agent"
         ],
         "correct": 2,
-        "explanation": "When users search with exact legal section numbers or jargon, BM25 (lexical search) wins. It ranks documents by how often rare specific terms appear — perfect for 'IPC Section 302' where keyword matching matters more than semantic similarity."
+        "explanation": "When searching for unique identifiers or codes like 'ERR-992', BM25 (keyword search) is superior. It looks for exact matches of rare terms, whereas vector search might find 'similar' sounding errors that are actually different."
     },
     {
         "category": "Agent Pattern",
         "cat_class": "tag-orange",
-        "scenario": "Every contract uploaded to ELNAR Innotech goes through the same process: extract parties → identify contract type → check for 5 standard clauses → generate summary report. This runs hundreds of times a day.",
+        "scenario": "Every time a new student signs up for your course, the system MUST: 1. Create their account, 2. Send a welcome email, 3. Enroll them in the 'Intro 101' module. This process never changes.",
         "options": [
             "Autonomous agent",
             "Chaining workflow",
@@ -356,12 +356,12 @@ QUESTIONS = [
             "Evaluator-optimizer"
         ],
         "correct": 1,
-        "explanation": "You know every step in advance and the sequence never changes. A chaining workflow is faster, cheaper, and more reliable than an agent here. Agents are overkill when the pipeline is predictable — workflows give you 100% consistent results."
+        "explanation": "Since the steps are fixed and the sequence never changes, a chaining workflow is the most reliable and cost-effective choice. Agents are for complex, changing paths; workflows are for standard, repeatable processes."
     },
     {
         "category": "RAG Technique",
         "cat_class": "tag-green",
-        "scenario": "A chunk from your legal document says: 'The party shall comply with the obligations mentioned above.' When retrieved alone, this chunk is useless — you don't know which party or which obligations.",
+        "scenario": "A small text chunk in your recipe database says: 'Mix it into the bowl with the others.' When the AI retrieves this chunk alone, it has no idea what 'it' or 'the others' refers to because the previous sentences are missing.",
         "options": [
             "Hybrid search (vector + BM25)",
             "Reranking",
@@ -369,12 +369,12 @@ QUESTIONS = [
             "Parallelization workflow"
         ],
         "correct": 2,
-        "explanation": "This is exactly the problem contextual retrieval solves. Before storing each chunk, you send the full document + chunk to Claude and generate context like: 'This refers to Clause 4, the tenant's maintenance obligations.' Now the chunk makes sense in retrieval."
+        "explanation": "Contextual retrieval solves this by adding context to each chunk before storing it. It might add: 'This refers to mixing flour into a bowl with eggs and sugar.' Now the chunk makes sense even when retrieved in isolation."
     },
     {
         "category": "Agent Pattern",
         "cat_class": "tag-orange",
-        "scenario": "ELNAR Innotech receives a contract. You don't know in advance whether it's a rental agreement, employment contract, or NDA — each needs a completely different review template and toolset.",
+        "scenario": "A customer support bot receives an email. It first needs to decide if the email is a 'Refund Request', a 'Technical Bug', or 'Sales Inquiry' so it can send it to the right specialized AI team.",
         "options": [
             "Evaluator-optimizer",
             "Routing workflow",
@@ -382,12 +382,12 @@ QUESTIONS = [
             "Single agent"
         ],
         "correct": 1,
-        "explanation": "Routing workflow is perfect here. Step 1: Claude classifies the contract type. Step 2: Your system routes it to the right pipeline — rental review, employment review, or NDA review — each with its own prompts and tools. Clean and predictable."
+        "explanation": "This is a routing workflow. You use one AI model to classify the input (the 'Router') and then direct the task to a specific prompt or tool designed for that category."
     },
     {
         "category": "RAG Technique",
         "cat_class": "tag-green",
-        "scenario": "Your vector search returns relevant chunks but the most important one keeps getting ranked 4th or 5th instead of 1st. The results are right, just in the wrong order.",
+        "scenario": "Your search finds 10 relevant news articles, but the most recent one (which is the most important) is showing up at the bottom of the list because the AI thought an older article was 'more similar' to the query.",
         "options": [
             "Add BM25 to create hybrid search",
             "Switch to contextual retrieval",
@@ -395,12 +395,12 @@ QUESTIONS = [
             "Use an autonomous agent instead"
         ],
         "correct": 2,
-        "explanation": "Reranking is exactly for this. After retrieval returns 5 chunks, you send them all to Claude with the original query and ask it to reorder by true relevance. It costs one extra LLM call but fixes ordering — especially for nuanced legal queries."
+        "explanation": "Reranking takes the top results from your search and uses a smarter (but slower) model to re-order them. This ensures the most truly relevant or recent item ends up at the very top."
     },
     {
         "category": "Agent Pattern",
         "cat_class": "tag-orange",
-        "scenario": "You need to review 20 independent contract clauses simultaneously for compliance. Each clause check is self-contained and doesn't depend on results from any other clause.",
+        "scenario": "You need to check 50 different product descriptions for spelling and grammar errors. Each description is independent and can be checked without knowing about the others.",
         "options": [
             "Chaining workflow — one at a time",
             "Parallelization workflow",
@@ -408,12 +408,12 @@ QUESTIONS = [
             "Evaluator-optimizer"
         ],
         "correct": 1,
-        "explanation": "Parallelization wins here. Since each clause check is independent, you run all 20 simultaneously — dramatically faster than chaining (20x speedup) and simpler than an autonomous agent. You know exactly what needs to happen, just in parallel."
+        "explanation": "Parallelization is perfect here. Since the tasks don't depend on each other, you can run all 50 checks at the same time, making the process much faster than checking them one by one."
     },
     {
         "category": "RAG Technique",
         "cat_class": "tag-green",
-        "scenario": "Your legal app needs to find case precedents when a user types 'tenant eviction dispute'. Users sometimes say 'eviction' and sometimes 'possession suit' — different words, same meaning. Keyword search misses the matches.",
+        "scenario": "A user searches for 'warm winter footwear'. You want the AI to find 'insulated boots' and 'thermal socks' even though the words 'warm' or 'winter' might not be in those product names.",
         "options": [
             "BM25 lexical search",
             "Vector search (semantic)",
@@ -421,12 +421,12 @@ QUESTIONS = [
             "Contextual retrieval"
         ],
         "correct": 1,
-        "explanation": "Vector search is built for this. It converts text to embeddings that capture meaning — so 'eviction dispute' and 'possession suit' land near each other in the embedding space and get matched correctly. BM25 keyword search would fail completely here."
+        "explanation": "Vector search uses 'embeddings' to understand concepts. It knows that 'insulated boots' are related to 'warm winter footwear' because they share the same semantic meaning, even if the keywords are different."
     },
     {
         "category": "Agent Pattern",
         "cat_class": "tag-orange",
-        "scenario": "ELNAR Innotech auto-generates contract drafts but quality is inconsistent — sometimes clauses are missing or language is too vague. You want the system to check its own output and keep improving until it meets a quality bar.",
+        "scenario": "You want an AI to write a high-quality blog post. You have one AI write the draft, and a second 'editor' AI reviews it for tone and clarity. If the editor finds issues, the first AI must rewrite the draft until the editor is satisfied.",
         "options": [
             "Single agent with a longer prompt",
             "Routing workflow",
@@ -434,7 +434,7 @@ QUESTIONS = [
             "Parallelization workflow"
         ],
         "correct": 2,
-        "explanation": "Evaluator-optimizer is the pattern. Step 1 (Producer): Claude drafts the contract. Step 2 (Evaluator): A separate Claude call reviews against your quality criteria. If it fails, feedback goes back to the producer and it tries again — just like a human review cycle."
+        "explanation": "This is the evaluator-optimizer pattern. It creates a feedback loop where one AI generates work and another critiques it, leading to much higher quality than a single pass."
     }
 ]
 
