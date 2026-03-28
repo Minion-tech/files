@@ -35,16 +35,6 @@ html, body, [class*="css"] {
 .brand {
     display: flex; align-items: center; gap: 10px;
 }
-.brand-logo {
-    width: 36px; height: 36px;
-    background: #2a5f4f;
-    border-radius: 8px;
-    display: inline-flex; align-items: center; justify-content: center;
-    color: #fff;
-    font-family: 'DM Serif Display', serif;
-    font-size: 18px;
-    font-weight: 700;
-}
 .brand-name {
     font-family: 'DM Serif Display', serif;
     font-size: 22px;
@@ -72,6 +62,7 @@ html, body, [class*="css"] {
 .hero-title {
     font-family: 'DM Serif Display', serif;
     font-size: 2.6rem;
+    color: #000;
     line-height: 1.1;
     letter-spacing: -1px;
     margin-bottom: 0.75rem;
@@ -511,7 +502,6 @@ init_state()
 st.markdown("""
 <div class="header-wrap">
   <div class="brand">
-    <div class="brand-logo">L</div>
     <span class="brand-name">LexAlly</span>
   </div>
   <span class="author-tag">by Nabeela Khan</span>
